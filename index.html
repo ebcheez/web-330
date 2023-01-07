@@ -1,0 +1,109 @@
+<!-- 
+===========================================================
+; Title: index.html
+; Author: Eric McCool
+; Date: 6 January 2023
+; Description: Landing page for course assignments, projects,
+;              and links.
+===========================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="theme.js"></script>
+
+    <title>WEB 330 - Enterprise JavaScript II</title>
+</head>
+
+<body class="light-theme">
+    <!-- create an icon with an onclick event -->
+    <div>
+        <i onclick="toggleMode(this)" 
+            id="icon-mode"
+            class="fa fa-toggle-off pull-right"
+            style="font-size: 28px;">
+            <span id="icon-text"></span> 
+        </i>
+    </div><br>
+
+    <!-- create a container -->
+    <div id="container">
+        <h1>Eric McCool's Landing Page</h1>
+        <h2>WEB 330 Enterprise JavaScript II</h2>
+        <hr>
+        <h3>Weekly Assignments</h3>
+        <ul>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 2.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 3.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 4.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 5.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 6.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 7.3</a></li>
+            <li><a href="https://github.com/ebcheez/web-330">Assignment 8.3</a></li>
+        </ul>
+
+        <h3>Projects</h3>
+        <ul>
+            <li><a href="https://github.com/ebcheez/web-330">Personal Portfolio</a></li>
+            <li><a href="https://github.com/ebcheez/web-231">WEB231's Landing Page</a></li>
+        </ul>
+
+        <h4>Important Links</h4>
+        <ul>
+            <li><a href="https://github.com/buwebdev/web-330">WEB 330 Repository</a></li>
+            <li><a href="https://bruinconnect.bellevue.edu/">BRUIN Connect</a></li>
+            <li><a href="https://validator.w3.org/">W3C HTML Validator</a></li>
+            <li><a href="http://jigsaw.w3.org/css-validator/">W3C CSS Validator</a></li>
+            <li><a href="https://www.w3schools.com/html/">HTML Tutorial</a></li>
+            <li><a href="https://www.w3schools.com/js/js_best_practices.asp">JavaScript Best Practices</a></li>
+        </ul>
+    </div><!-- end container -->
+
+
+    <script>
+        
+        // set default theme to light if one has not been set in localStorage.
+        setDefaultTheme();
+
+        // Function to switch the selected theme.
+        function toggleMode(x) {
+            // get the body's CSS class.
+            let colorTheme = document.body.classList;
+            // get the current class of the triggered button.
+            let iconMode = x.classList;
+            
+            // if the current theme is light, update theme to dark in localStorage.
+            if (colorTheme.value === "light-theme") {
+                localStorage.clear();
+                localStorage.setItem("mode", "dark-theme");
+                localStorage.setItem("iconMode", "fa-toggle-on");
+                localStorage.setItem("iconText", "Dark Mode");
+            }
+
+            // if the current theme is dark, update theme to light in localStorage.
+            else {
+                localStorage.clear();
+                localStorage.setItem("mode", "light-theme");
+                localStorage.setItem("iconMode", "fa-toggle-off");
+                localStorage.setItem("iconText", "Light Mode");
+            }
+
+            // Apply the updated selection to the HTML page elements
+            colorTheme.value = localStorage.getItem("mode");
+            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); 
+        }
+        
+    </script>
+</body>
+</html>
