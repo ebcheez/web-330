@@ -1,0 +1,57 @@
+/*
+===========================================================
+; Title: site.css
+; Author: Eric McCool
+; Date: 4 January 2023
+; Description: css classes for assignments
+===========================================================
+*/
+
+/* assignment 1 styles */
+#container {
+    margin: 50px 100px 0px;}
+#icon-mode:hover {
+    cursor: pointer;}
+#icon-text {
+    padding-left: 10px;}
+.pull-right {
+    float: right;}
+
+/* create header styles */
+.app-header {
+    text-align: center;
+    font-weight: 400;
+    margin: 20px auto 40px auto;}
+#assign-results-header {
+    padding-left: 16px;}
+
+/* create styles for the return-home link */
+.return-home {
+    text-decoration: none;}
+.return-home:hover {
+    color: #9c27b0;
+    text-decoration: underline;}
+.return-home:visited {
+    color: #3c275a;}
+.return-link {
+    width: 600px;
+    margin: 1% auto 0;}
+
+/* create form styles */
+.form {
+    display: inline-grid;
+    grid-template-columns: auto;}
+.form-field {
+    padding: 20px;}
+.full-width {
+    width: 100%;}
+
+/* create assignment styles */
+.assign-container {
+    padding: 10px;}
+.assign-content {
+    width: 600px;
+    margin: 3% auto 0;}
+.assign-results-text {
+    text-align: center;
+    font-size: 28px;}

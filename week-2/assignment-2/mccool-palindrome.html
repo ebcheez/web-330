@@ -1,0 +1,192 @@
+<!-- 
+===============================================================================
+; Title: palindrome.html
+; Author: Eric McCool
+; Date: 9 January 2023
+; Description: Determine if a string is a palindrome
+===============================================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="theme.js"></script>
+    <title>WEB 330 - Enterprise JavaScript II</title>
+</head>
+
+<body class="light-theme">
+
+    <!-- create an icon with an onclick event -->
+    <div>
+        <i onclick="toggleMode(this)" 
+            id="icon-mode"
+            class="fa fa-toggle-off pull-right"
+            style="font-size: 16px;">
+            <span id="icon-text"></span> 
+        </i>
+    </div><br>
+
+    <!-- create the container include an app header -->
+    <div class="assign-container">
+        <h1 class="app-header">Welcome to the Palindrome App!</h1>
+        
+        <!-- create the first card with a title -->
+        <div class="assign-content">
+            <div class="card">
+                <div class="card-title">Palindrome Checker</div>
+
+                <!-- add 2 form-fields to the card -->
+                <div class="card-content">
+                    <div class="form">
+
+                        <!-- label and input form-field -->
+                        <div class="form-field">
+                            <label for="txtPhrase">Phrase value:</label>
+                            <input type="text" class="input" id="txtPhrase" name="txtPhrase" value="">
+                        </div>
+                        
+                        <!-- button form-field -->
+                        <div class="form-field">
+                            <button class="btn btn-primary full-width" 
+                                id="btnCheckPhrase" name="btnCheckPhrase">
+                                Check Phrase
+                            </button>
+                        </div>
+
+                    </div><!-- end form -->
+                </div><!-- end card-content -->
+            </div><!-- end card -->
+        </div><!-- end assign-content -->
+
+        <!-- Return to the course landing page. -->    
+        <div class="return-link">
+            <a href="https://ebcheez.github.io/web-330/" class="return-home">Return</a>
+        </div>        
+
+        <!-- create the second card with results -->
+        <div class="assign-container">
+            <div class="assign-content">
+
+                <!-- create the title and results -->
+                <div class="card">
+                    <div class="card-title">Palindrome Results</div>
+                    <div id="assign-results-header"></div>
+                    <div class="card-content assign-results-text" id="assign-results"></div>
+                </div>
+
+            </div><!-- end assign-content -->
+        </div><!-- end the second card -->
+    </div><!-- end assign-container -->
+
+    <script>
+        // set default theme to light if one has not been set in localStorage.
+        setDefaultTheme();
+
+        // Function to switch the selected theme.
+        function toggleMode(x) {
+            // get the body's CSS class.
+            let colorTheme = document.body.classList;
+            // get the current class of the triggered button.
+            let iconMode = x.classList;
+            
+            // if the current theme is light, update theme to dark in localStorage.
+            if (colorTheme.value === "light-theme") {
+                localStorage.clear();
+                localStorage.setItem("mode", "dark-theme");
+                localStorage.setItem("iconMode", "fa-toggle-on");
+                localStorage.setItem("iconText", "Dark Mode");
+            }
+
+            // if the current theme is dark, update theme to light in localStorage.
+            else {
+                localStorage.clear();
+                localStorage.setItem("mode", "light-theme");
+                localStorage.setItem("iconMode", "fa-toggle-off");
+                localStorage.setItem("iconText", "Light Mode");
+            }
+
+            // Apply the updated selection to the HTML page elements
+            colorTheme.value = localStorage.getItem("mode");
+            iconMode.value = `fa ${localStorage.getItem("iconMode")} pull-right`;
+            document.getElementById("icon-text").innerHTML = localStorage.getItem("iconText"); 
+        }
+
+        // create the getTodaysDate() function with parameter 'en-US'
+        function getTodaysDate(){
+            return new Date().toLocaleDateString('en-US');
+        }
+
+        // create the single string parameter getLength() function. return the string's length
+        function getLength(txtPhrase) {
+            return txtPhrase.length;
+        }
+
+        // create the single string parameter reverse() function. in the function:
+        //  split the string to a charachter array,
+        //  reverse the string with JS reverse(),
+        //  convert the array back to a string with JS join(),
+        //  return the string.
+        function reverse(txtPhrase) {
+            const charArray = txtPhrase.split("");
+            console.log(charArray);
+            charArray.reverse();
+            return charArray.join();
+        }
+
+        // create the single string parameter isPalindrome() function. 
+        //  call the reverse() function,
+        //  return true if: reverse() === string parameter
+        // test: [x]toLowerCase
+        function isPalindrome(txtPhrase) {
+            let test = txtPhrase.toLowerCase();
+            console.log(test); // pass
+            const charArray = test.split(""); 
+            let reversedPhrase = reverse(test);
+            if (reversedPhrase == charArray) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // create a displayHeader function to make the onclick smaller
+        // test: [ ]remove commas in results-header Reversed Phrase:
+        function displayHeader(txtPhrase) {
+            let today = getTodaysDate();
+            let len = getLength(txtPhrase);
+            let header = `Date: ${today}<br>
+                          Original Phrase: ${txtPhrase}<br>
+                          Reversed Phrase: ${reverse(txtPhrase)}<br>
+                          Phrase Length: ${len}<br>`;
+            document.getElementById("assign-results-header").innerHTML = header;
+        }
+
+        // create a displayResults function to make the onclick smaller
+        function displayResults(txtPhrase){
+            let assignResults = document.getElementById("assign-results");
+            let booResult = isPalindrome(txtPhrase);
+            if (booResult === true) {
+                assignResults.innerHTML = `${txtPhrase} <u><b>is</b></u> a palindrome!`;            
+            } else {
+                assignResults.innerHTML = `${txtPhrase} <u><b>is not</b></u> a palindrome!`;
+            }
+        }
+
+        // register an onclick event using getElementById("id").onclick function
+        document.getElementById("btnCheckPhrase").onclick = function() {
+            let txtPhrase = document.getElementById("txtPhrase").value;
+            displayHeader(txtPhrase);
+            displayResults(txtPhrase);
+        }
+    </script>
+
+</body>
+</html>
