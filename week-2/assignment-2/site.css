@@ -10,6 +10,9 @@
 /* assignment 1 styles */
 #container {
     margin: 50px 100px 0px;}
+#icon-mode {
+    display: block;
+}
 #icon-mode:hover {
     cursor: pointer;}
 #icon-text {
