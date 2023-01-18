@@ -6,3 +6,9 @@
 ; Description: The js index for restaurant.html
 ==========================================================================
 */
+
+export * from "./beverage.js";
+export * from "./appetizer.js";
+export * from "./mainCourse.js";
+export * from "./dessert.js";
+export * from "./bill.js";
