@@ -9,28 +9,28 @@
 
 export class Bill {
 
-	this._beverages = [];
-	this._appetizers = [];
-	this._mainCourses = [];
-	this._desserts = [];
+	_beverages = [];
+	_appetizers = [];
+	_mainCourses = [];
+	_desserts = [];
 
-	function addBeverage(beverage) {
+	addBeverage(beverage) {
 		this._beverages.push(beverage);
 	}
 
-	function addAppetizer(appetizer) {
+	addAppetizer(appetizer) {
 		this._appetizers.push(appetizer);
 	}
 
-	function addMainCourse(mainCourse) {
+	addMainCourse(mainCourse) {
 		this._mainCourses.push(mainCourse);
 	}
 
-	function addDessert(dessert) {
+	addDessert(dessert) {
 		this._desserts.push(dessert);
 	}
 
-	function getTotal() {
+	getTotal() {
 		let total = 0;
 
 		let beverageTotal = this._beverages.forEach(function(beverage) {
